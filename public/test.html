@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Users</title>
+</head>
+<body>
+<script type="text/javascript">
+	var xhr = new XMLHttpRequest();
+	xhr.open('GET', 'http://localhost:3000/users');
+	xhr.responseType = 'json';
+	xhr.onload = function() {
+		if(this.status == 200) {
+			var users = this.response;
+			var ul = document.createElement('ul');
+			users.forEach(function(user) {
+				var li = document.createElement('li');
+				var text = document.createTextNode(user.name + " - " + user.age);
+				li.appendChild(text);
+				ul.appendChild(li);
+			})
+			document.querySelector('body').appendChild(ul);
+
+		}
+	};
+
+	xhr.send();
+
+</script>
+</body>
+</html>
